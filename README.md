@@ -46,13 +46,15 @@ Add an object to `publications` with a unique `id`, `year`, `type` (`Journal Art
 Keep project documentation and source code in the appropriate separate repository. To connect research software to a publication, update the `software` record in `profile.js` and set the matching publication's `software` flag. For additional software records, convert this record into a keyed collection and reference its key from each publication. Do not add project showcase pages unless the scope changes.
 
 ## Update profile information
-Edit `src/data/profile.js`, then build and test. Education dates must match verified records. The PhD start year is intentionally omitted because the supplied CV has differing education and research dates; status is **In progress**. Never use Dr. or imply the degree has been awarded.
+Edit `src/data/profile.js`, then build and test. Education dates must match verified records. The owner confirmed the PhD start year as 2021 and French proficiency as Intermediate on 20 September 2026; the PhD remains in progress. Never use Dr. or imply the degree has been awarded.
 
 ## Portrait
 The supplied image is at `public/images/ahmed-iqdymat.jpeg`, referenced by `profile.portrait`. Preserve the authorised photograph when updating the source. It displays at 176px on desktop and 104px on small phones.
 
 ## CV and privacy
-`/cv/` is an English academic CV with Print / Save as PDF. `profile.cvPdf` is `null`, so no PDF download is rendered. When an approved public PDF is supplied, place it at `public/cv/Ahmed-Iqdymat-Academic-CV.pdf`, set `profile.cvPdf` to `/cv/Ahmed-Iqdymat-Academic-CV.pdf`, and update `profile.updated`. The build check should then require the real PDF rather than the currently disabled button.
+`/cv/` is an English academic CV with Print / Save as PDF and an owner link to `/cv/update/`. To publish or replace the public PDF, upload `Ahmed-Iqdymat-Academic-CV.pdf` directly to the repository root through GitHub and commit. Authentication and write permission are enforced by GitHub. The existing workflow builds on every commit. The build discovers the PDF and generates `/cv/Ahmed-Iqdymat-Academic-CV.pdf`, enabling both download controls automatically. No code edits are needed for future PDF updates.
+
+The PDF is deliberately outside `website-source.zip`, so source updates do not replace it. The build checks its PDF signature, end marker and 10 MB limit; these checks do not review its private content. Upload only a reviewed public version. No original private CV has been published. Without a PDF, download controls remain hidden. The owner help page is excluded from indexing and the sitemap.
 
 Only the two explicitly authorised email addresses are published. Do not publish the original private CV, telephone numbers, residential information, credentials, or correspondence. Languages and Python proficiency follow reviewed records; unresolved factual conflicts are documented in REVIEW.md.
 

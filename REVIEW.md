@@ -72,3 +72,8 @@ No address change, domain purchase, subscription or hosting migration was perfor
 
 ## Privacy
 Only the two authorised emails are public. No telephone, residential address, credentials, private CV, source academic documents or correspondence included in the website/source archive. Portrait preserved; its visible appearance is unchanged. Structured data uses only the institutional email. No analytics added.
+
+## Owner confirmation and PDF update workflow — 20 September 2026
+The owner has now confirmed 2021 as the PhD start year and Intermediate French. This resolves the earlier factual uncertainties; the website displays 2021–Present, In progress.
+
+Added `/cv/update/`, accessible from the Academic CV page, with an authenticated GitHub upload action and instructions. Uploading the consistently named public PDF to the repository root triggers the existing deployment and activates the stable download URL automatically. The PDF remains independent of the source archive. No private source CV was uploaded. PDF signature, size and completeness checks reject obviously invalid uploads; they do not certify document content.
