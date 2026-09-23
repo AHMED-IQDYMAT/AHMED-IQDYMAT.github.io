@@ -76,4 +76,17 @@ Only the two authorised emails are public. No telephone, residential address, cr
 ## Owner confirmation and PDF update workflow — 20 September 2026
 The owner has now confirmed 2021 as the PhD start year and Intermediate French. This resolves the earlier factual uncertainties; the website displays 2021–Present, In progress.
 
-Added `/cv/update/`, accessible from the Academic CV page, with an authenticated GitHub upload action and instructions. Uploading the consistently named public PDF to the repository root triggers the existing deployment and activates the stable download URL automatically. The PDF remains independent of the source archive. No private source CV was uploaded. PDF signature, size and completeness checks reject obviously invalid uploads; they do not certify document content.
+The initial owner-help page and fixed input filename were superseded by the focused workflow correction below. Ahmed subsequently approved publishing the uploaded CV with its telephone number inside the PDF only. The PhD year inside that PDF was corrected to 2021 with his approval.
+
+## Focused CV workflow correction — 23 September 2026
+
+- Removed the `/cv/update/` source route and the owner link from `/cv/`; removed only their unused CSS. The old URL is intentionally a 404, not an administrative redirect.
+- Retained View academic CV, Download CV (PDF), Print CV / Save as PDF, last-updated information, all other content, metadata, navigation, and styling.
+- Owner replacement instructions now live only in README.md. Documentation is not copied to the public build output.
+- Added an independently stored `cv-upload/` folder containing one reviewed PDF with an arbitrary filename and a `.gitkeep` marker. The build maps it to the unchanged `/cv/Ahmed-Iqdymat-Academic-CV.pdf` URL. Any PDF filename is accepted; no repeated website edits or renaming convention is required.
+- Replacing a differently named PDF through GitHub takes removal of the previous file and upload of the replacement; a local Git client can combine these in one commit. Empty/multiple-PDF states fail closed and leave the previous successful deployment live. We deliberately avoid choosing by filename, filesystem modification time, or an ambiguous newest-file guess.
+- Kept the root PDF as a legacy compatibility input only; it is ignored whenever the new upload folder exists. Neither input is bundled in the source archive. The existing Pages workflow and permissions are unchanged.
+- Preserved the currently served, corrected PDF byte-for-byte (SHA-256 `fbeba2a109366352f04e8cc69946b8694b1ffb448311615939d5fb70774f5a87`). No CV text or other academic content changed in this correction.
+- Added regression checks for removed admin content/routes, stable PDF mapping and exact bytes; fixture tests cover arbitrary filenames, replacement, uppercase extension, legacy input, empty folder, ambiguity, invalid/oversized PDFs and symlinks.
+
+Local validation: `npm ci`, `npm run build`, and `npm test` PASS. Three HTML routes remain; internal links, PDF bytes, metadata, privacy and the new replacement tests pass. Comparing the source archive confirms no profile, publication, biography, layout component, navigation, image, or deployment workflow changes. Local preview access is restricted in the cloud browser; visual verification is performed on the deployed HTTPS site. GitHub Actions and live verification are reported separately after deployment rather than inferred from local success.
